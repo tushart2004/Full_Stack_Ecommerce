@@ -1,0 +1,47 @@
+.new-collections {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 100px;
+}
+
+.new-collections h1 {
+    color: #171717;
+    font-size: 40px;
+    font-weight: 600;
+}
+
+.new-collections hr {
+    width: 150px;
+    height: 4px;
+    border-radius: 10px;
+    background: #252525;
+}
+
+.collections {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 60px auto;
+    gap: 30px;
+    max-width: 1280px;
+}
+
+.collections > * { /* add this rule to set uniform size for each collection item */
+    width: 350px; /* adjust the width and height values as needed */
+    height: 400px;
+    margin: 10px; /* add some margin for spacing */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.collections img { /* add this rule to set uniform size for all images */
+    width: 350px; /* make the image width 100% of the parent container */
+    height: 250px; /* adjust the height value as needed */
+    object-fit: cover; /* maintain the aspect ratio and cover the entire area */
+    border-radius: 10px; /* add a border radius for a rounded corner effect */
+}
