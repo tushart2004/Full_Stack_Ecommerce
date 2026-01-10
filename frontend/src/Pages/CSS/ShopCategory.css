@@ -32,8 +32,8 @@
 }
 
 .shopcategory-products {
-  width: 90%;
-  max-width: 1360px;
+  width: 1050px;
+  height:500px;
   justify-content: center;
   margin: 20px auto;
   display: flex;
@@ -54,7 +54,7 @@
 }
 
 .shopcategory-product img {
-  width: 150px;
+  width: 250px;
   height: 150px;
   object-fit: cover;
   border-radius: 10px 10px 0 0;
