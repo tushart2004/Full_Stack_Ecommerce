@@ -3,45 +3,37 @@
     flex-direction: column;
     align-items: center;
     gap: 5px;
-    margin-bottom: 100px;
+    margin: 70px 0 100px;
+    padding: 0 5%;
 }
 
 .new-collections h1 {
     color: #171717;
-    font-size: 40px;
+    font-size: 38px;
     font-weight: 600;
 }
 
 .new-collections hr {
-    width: 150px;
-    height: 4px;
+    width: 110px;
+    height: 3px;
     border-radius: 10px;
     background: #252525;
 }
 
 .collections {
     width: 100%;
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 260px));
     justify-content: center;
     margin: 60px auto;
-    gap: 30px;
+    gap: 26px;
     max-width: 1280px;
 }
 
-.collections > * { /* add this rule to set uniform size for each collection item */
-    width: 350px; /* adjust the width and height values as needed */
-    height: 400px;
-    margin: 10px; /* add some margin for spacing */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+.collections > * {
+    width: 100%;
 }
 
-.collections img { /* add this rule to set uniform size for all images */
-    width: 350px; /* make the image width 100% of the parent container */
-    height: 250px; /* adjust the height value as needed */
-    object-fit: cover; /* maintain the aspect ratio and cover the entire area */
-    border-radius: 10px; /* add a border radius for a rounded corner effect */
+.collections img {
+    width: 100%;
 }

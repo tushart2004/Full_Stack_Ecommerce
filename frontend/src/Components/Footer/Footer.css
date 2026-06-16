@@ -4,7 +4,9 @@
     justify-content: center;
     align-items: center;
     gap: 25px;
-    padding-top: 20px;
+    padding: 36px 5% 0;
+    background: #f6fbf7;
+    border-top: 1px solid #dcefe2;
 }
 .footer-logo{
     display: flex;
@@ -13,7 +15,7 @@
 }
 
 .footer-logo img{
-    width: 250px;
+    width: 210px;
 }
 .footer-links{
     display: flex;

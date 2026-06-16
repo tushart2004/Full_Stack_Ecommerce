@@ -1,0 +1,43 @@
+.shop-highlights {
+  width: min(1180px, 90%);
+  margin: -34px auto 60px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  position: relative;
+  z-index: 2;
+}
+
+.shop-highlights div {
+  background: #fff;
+  border: 1px solid #dfeae2;
+  border-radius: 8px;
+  padding: 22px;
+  box-shadow: 0 16px 44px rgba(20, 58, 34, 0.1);
+}
+
+.shop-highlights span {
+  display: inline-flex;
+  color: #159447;
+  font-weight: 800;
+  margin-bottom: 12px;
+}
+
+.shop-highlights strong {
+  display: block;
+  color: #17211b;
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.shop-highlights p {
+  color: #667568;
+  line-height: 1.5;
+}
+
+@media(max-width: 850px) {
+  .shop-highlights {
+    grid-template-columns: 1fr;
+    margin-top: 24px;
+  }
+}

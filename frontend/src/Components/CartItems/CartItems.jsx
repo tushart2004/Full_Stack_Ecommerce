@@ -4,10 +4,26 @@ import cross_icon from "../Assets/cart_cross_icon.png";
 import { ShopContext } from "../../Context/ShopContext";
 import { currency } from "../../App";
 import { getProductImageUrl } from "../../utils/productImage";
+import { Link } from "react-router-dom";
 
 const CartItems = () => {
   const {products} = useContext(ShopContext);
   const {cartItems,removeFromCart,getTotalCartAmount} = useContext(ShopContext);
+  const cartProducts = products.filter((product) => cartItems[product.id] > 0);
+  const subtotal = getTotalCartAmount();
+  const discount = subtotal >= 500 ? 50 : 0;
+  const deliveryFee = subtotal > 0 && subtotal < 499 ? 40 : 0;
+  const total = Math.max(subtotal - discount + deliveryFee, 0);
+
+  if (cartProducts.length === 0) {
+    return (
+      <div className="cartitems cartitems-empty">
+        <h1>Your cart is waiting</h1>
+        <p>Add fresh groceries, pantry staples, and dairy products to start a demo order.</p>
+        <Link to="/">Shop products</Link>
+      </div>
+    );
+  }
 
   return (
     <div className="cartitems">
@@ -20,11 +36,8 @@ const CartItems = () => {
         <p>Remove</p>
       </div>
       <hr />
-      {products.map((e)=>{
-
-        if(cartItems[e.id]>0)
-        {
-          return  <div>
+      {cartProducts.map((e)=>{
+          return  <div key={e.id}>
                     <div className="cartitems-format-main cartitems-format">
                       <img className="cartitems-product-icon" src={getProductImageUrl(e.image)} alt="" />
                       <p cartitems-product-title>{e.name}</p>
@@ -35,8 +48,6 @@ const CartItems = () => {
                     </div>
                      <hr />
                   </div>;
-        }
-        return null;
       })}
       
       <div className="cartitems-down">
@@ -45,26 +56,36 @@ const CartItems = () => {
           <div>
             <div className="cartitems-total-item">
               <p>Subtotal</p>
-              <p>{currency}{getTotalCartAmount()}</p>
+              <p>{currency}{subtotal}</p>
+            </div>
+            <hr />
+            <div className="cartitems-total-item">
+              <p>Demo Discount</p>
+              <p>- {currency}{discount}</p>
             </div>
             <hr />
             <div className="cartitems-total-item">
               <p>Shipping Fee</p>
-              <p>Free</p>
+              <p>{deliveryFee === 0 ? "Free" : `${currency}${deliveryFee}`}</p>
             </div>
             <hr />
             <div className="cartitems-total-item">
               <h3>Total</h3>
-              <h3>{currency}{getTotalCartAmount()}</h3>
+              <h3>{currency}{total}</h3>
             </div>
           </div>
-          <button>PROCEED TO CHECKOUT</button>
+          <Link to="/checkout" className="cartitems-checkout">PROCEED TO CHECKOUT</Link>
         </div>
         <div className="cartitems-promocode">
-          <p>If you have a promo code, Enter it here</p>
+          <p>Use promo code <strong>FRESH50</strong> on orders above {currency}500.</p>
           <div className="cartitems-promobox">
-            <input type="text" placeholder="promo code" />
+            <input type="text" placeholder="FRESH50" />
             <button>Submit</button>
+          </div>
+          <div className="cartitems-perks">
+            <span>Fresh packing</span>
+            <span>Same-day demo delivery</span>
+            <span>Secure checkout preview</span>
           </div>
         </div>
       </div>

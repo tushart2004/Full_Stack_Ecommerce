@@ -5,6 +5,7 @@ import Cart from "./Pages/Cart";
 import Product from "./Pages/Product";
 import Footer from "./Components/Footer/Footer";
 import ShopCategory from "./Pages/ShopCategory";
+import Checkout from "./Pages/Checkout";
 
 import LoginSignup from "./Pages/LoginSignup";
 
@@ -26,6 +27,7 @@ function App() {
             <Route path=':productId' element={<Product />} />
           </Route>
           <Route path="/cart" element={<Cart />} />
+          <Route path="/checkout" element={<Checkout />} />
           <Route path="/login" element={<LoginSignup/>} />
         </Routes>
         <Footer />
