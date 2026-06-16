@@ -1,23 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext } from 'react'
 import './RelatedProducts.css'
 import Item from '../Item/Item'
-import { backend_url } from '../../App';
+import { ShopContext } from '../../Context/ShopContext';
 
 const RelatedProducts = ({category,id}) => {
 
-  const [related,setRelated] = useState([]);
-
-  useEffect(()=>{
-    fetch(`${backend_url}/relatedproducts`,{
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({category:category}),
-      })
-    .then((res)=>res.json()).then((data)=>setRelated(data))
-  },[])
+  const { products } = useContext(ShopContext);
+  const related = products.filter((item) => item.category === category && item.id !== id).slice(0, 4);
 
   return (
     <div className='relatedproducts'>
@@ -25,9 +14,7 @@ const RelatedProducts = ({category,id}) => {
       <hr />
       <div className="relatedproducts-item">
         {related.map((item,index)=>{
-          if (id !== item.id) {
-            return <Item key={index} id={item.id} name={item.name} image={item.image}  new_price={item.new_price} old_price={item.old_price}/>
-          }
+          return <Item key={index} id={item.id} name={item.name} image={item.image}  new_price={item.new_price} old_price={item.old_price}/>
         })}
       </div>
     </div>

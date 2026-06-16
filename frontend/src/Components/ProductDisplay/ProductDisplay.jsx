@@ -3,7 +3,8 @@ import "./ProductDisplay.css";
 import star_icon from "../Assets/star_icon.png";
 import star_dull_icon from "../Assets/star_dull_icon.png";
 import { ShopContext } from "../../Context/ShopContext";
-import { backend_url, currency } from "../../App";
+import { currency } from "../../App";
+import { getProductImageUrl } from "../../utils/productImage";
 
 const ProductDisplay = ({product}) => {
 
@@ -14,7 +15,7 @@ const ProductDisplay = ({product}) => {
       <div className="productdisplay-left">
       
         <div className="productdisplay-img">
-          <img className="productdisplay-main-img" src={backend_url + product.image} alt="img" />
+          <img className="productdisplay-main-img" src={getProductImageUrl(product.image)} alt="img" />
         </div>
       </div>
       <div className="productdisplay-right">

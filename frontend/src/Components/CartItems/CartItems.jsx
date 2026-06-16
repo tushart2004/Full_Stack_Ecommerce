@@ -2,7 +2,8 @@ import React, { useContext } from "react";
 import "./CartItems.css";
 import cross_icon from "../Assets/cart_cross_icon.png";
 import { ShopContext } from "../../Context/ShopContext";
-import { backend_url, currency } from "../../App";
+import { currency } from "../../App";
+import { getProductImageUrl } from "../../utils/productImage";
 
 const CartItems = () => {
   const {products} = useContext(ShopContext);
@@ -25,7 +26,7 @@ const CartItems = () => {
         {
           return  <div>
                     <div className="cartitems-format-main cartitems-format">
-                      <img className="cartitems-product-icon" src={backend_url+e.image} alt="" />
+                      <img className="cartitems-product-icon" src={getProductImageUrl(e.image)} alt="" />
                       <p cartitems-product-title>{e.name}</p>
                       <p>{currency}{e.new_price}</p>
                       <button className="cartitems-quantity">{cartItems[e.id]}</button>

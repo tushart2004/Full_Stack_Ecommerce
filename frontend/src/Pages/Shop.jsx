@@ -1,26 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext } from 'react'
 import Hero from '../Components/Hero/Hero'
-
-
 import NewCollections from '../Components/NewCollections/NewCollections'
+import { ShopContext } from '../Context/ShopContext'
 
 
 const Shop = () => {
 
-
-  const [newcollection, setNewCollection] = useState([]);
-
-  const fetchInfo = () => { 
-    
-    fetch('http://localhost:4000/newcollections') 
-            .then((res) => res.json()) 
-            .then((data) => setNewCollection(data))
-    }
-
-    useEffect(() => {
-      fetchInfo();
-    }, [])
-
+  const { products } = useContext(ShopContext);
+  const newcollection = products.slice(0, 8);
 
   return (
     <div>

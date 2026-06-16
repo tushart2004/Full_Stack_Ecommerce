@@ -17,7 +17,6 @@ mongoose.connect("mongodb+srv://tushartikia:lnpt112922@cluster0.kwb3whx.mongodb.
 // paste your mongoDB Connection string above with password
 // password should not contain '@' special character
 
-
 //Image Storage Engine 
 const storage = multer.diskStorage({
   destination: './upload/images',
