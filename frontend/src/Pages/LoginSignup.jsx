@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./CSS/LoginSignup.css";
+import { backend_url } from "../App";
 
 const LoginSignup = () => {
 
@@ -12,7 +13,7 @@ const LoginSignup = () => {
 
   const login = async () => {
     let dataObj;
-    await fetch('http://localhost:4000/login', {
+    await fetch(`${backend_url}/login`, {
       method: 'POST',
       headers: {
         Accept:'application/form-data',
@@ -21,7 +22,10 @@ const LoginSignup = () => {
       body: JSON.stringify(formData),
     })
       .then((resp) => resp.json())
-      .then((data) => {dataObj=data});
+      .then((data) => {dataObj=data})
+      .catch(() => {
+        dataObj = { success: false, errors: "Login is disabled in demo mode." };
+      });
       console.log(dataObj);
       if (dataObj.success) {
         localStorage.setItem('auth-token',dataObj.token);
@@ -35,7 +39,7 @@ const LoginSignup = () => {
 
   const signup = async () => {
     let dataObj;
-    await fetch('http://localhost:4000/signup', {
+    await fetch(`${backend_url}/signup`, {
       method: 'POST',
       headers: {
         Accept:'application/form-data',
@@ -44,7 +48,10 @@ const LoginSignup = () => {
       body: JSON.stringify(formData),
     })
       .then((resp) => resp.json())
-      .then((data) => {dataObj=data});
+      .then((data) => {dataObj=data})
+      .catch(() => {
+        dataObj = { success: false, errors: "Signup is disabled in demo mode." };
+      });
 
       if (dataObj.success) {
         localStorage.setItem('auth-token',dataObj.token);
